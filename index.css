@@ -1,0 +1,43 @@
+#countdown {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+
+.gameField {
+    display: flex;
+    width: auto;
+}
+.gameField article {
+    width: 50%;
+}
+.gameField #playerSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+}
+.gameField #playerSide img {
+    display: none;
+    width: 50%;
+    text-align: center;
+}
+.gameField #playerSide button{
+    margin: 10px auto;
+}
+.gameField #playerSide button img{
+    width: 100px;
+    display: block;
+    text-align: center;
+}
+.gameField #iaSide {
+    display: flex;
+    justify-content: center;
+}
+.gameField #iaSide .resultIA {
+    display: none;
+    width: 50%;
+    text-align: center;
+}
