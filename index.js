@@ -1,10 +1,19 @@
 const images = ["./img/paper_ai.png", "./img/rock_ai.png", "./img/scissor_ai.png"]
 const imagesPlayer = ["./img/paper.png", "./img/rock.png", "./img/scissor.png"]
 
+let signIA 
+let signPlayer
+
+let scoreIA = 0
+let scorePlayer = 0
+let finalScore = ``
+
+const randomIA = images[Math.floor(Math.random() * 3)]
 
 const signs = () => {
+    signIA = Math.floor(Math.random() * 3)
     document.getElementById("signIA")
-    .setAttribute("src", images[Math.floor(Math.random() * 3)])
+    .setAttribute("src", images[signIA])
 }
 
 // const loadingSound = () => {
@@ -12,18 +21,15 @@ const signs = () => {
 //     .setAttribute("src", "./audio/Mario Kart Wii - Item Box - Sound Effect.mp3")
 // }
 const loadingSound = new Audio("./audio/Mario Kart Wii - Item Box - Sound Effect.mp3")
+const roundLostSound = new Audio("./audio/Mario 64 Oof Sound Effect.mp3")
+const roundWinSound = new Audio("./audio/Lets Go (Mario Voice).mp3")
+const gameLostSound = new Audio("./audio/Super Mario Sunshine Music - Too Bad!.mp3")
+const gameWinSound = new Audio("./audio/Stage Win (Super Mario) - Sound Effect HD.mp3")
 
 let interval
 
 const timeOutReset = () => {
-    // document.getElementById ("rock")
-    //     .style.display = "none"
-    // document.getElementById ("paper")
-    //     .style.display = "none"
-    // document.getElementById ("scissor")
-    //     .style.display = "none"
     
-
     document.getElementById ("rockButton")
         .style.display = "block"
     document.getElementById ("paperButton")
@@ -38,10 +44,11 @@ const timeOutReset = () => {
         .setAttribute("src", "")
     document.getElementById ("playerSign")
         .style.display = "none"
+
+    document.getElementById("sentence")
+        .innerHTML = " "
 }
 
-
-const stopRoll = () => {}
         
         
         // ----------------------------------- ROCK ROCK ROCK ROCK ROCK ---------------------------------------------
@@ -57,9 +64,6 @@ const rockClick = () => {
     
     loadingSound.play()
 
-    // document.getElementById ("rock")
-    //     .style.display = "block"
-
     document.getElementById ("rockButton")
         .style.display = "none"
 
@@ -69,14 +73,23 @@ const rockClick = () => {
     document.getElementById ("scissorButton")
         .style.display = "none"
         
-    setTimeout(timeOutReset, 6000)
-
-    document.getElementById ("playerSign")
-        .setAttribute("src", imagesPlayer[1])
-    document.getElementById ("playerSign")
+        signPlayer = 1
+        document.getElementById ("playerSign")
+        .setAttribute("src", imagesPlayer[signPlayer])
+        document.getElementById ("playerSign")
         .style.display = "block"
-    
-    
+        
+        setTimeout (() => {
+            console.log(signIA)
+        }, 3300)
+        setTimeout (() => {
+            console.log(signPlayer)
+        }, 3300)
+
+        setTimeout(endOfRound, 4000)
+        setTimeout(score, 5000)
+
+        setTimeout(timeOutReset, 6000)
     }
 
 
@@ -93,9 +106,6 @@ const paperClick = () => {
 
     loadingSound.play()
 
-    // document.getElementById ("paper")
-    //     .style.display = "block"
-
     document.getElementById ("rockButton")
         .style.display = "none"
 
@@ -105,12 +115,16 @@ const paperClick = () => {
     document.getElementById ("scissorButton")
         .style.display = "none"
 
-    setTimeout(timeOutReset, 6000)
-
+    signPlayer = 0
     document.getElementById ("playerSign")
-        .setAttribute("src", imagesPlayer[0])
+        .setAttribute("src", imagesPlayer[signPlayer])
     document.getElementById ("playerSign")
         .style.display = "block"
+
+    setTimeout(endOfRound, 4000)
+    setTimeout(score, 5000)
+
+    setTimeout(timeOutReset, 6000)
     }
 
 
@@ -127,9 +141,6 @@ const scissorClick = () => {
 
     loadingSound.play()
 
-    // document.getElementById ("scissor")
-    //     .style.display = "block"
-
     document.getElementById ("rockButton")
         .style.display = "none"
 
@@ -139,21 +150,61 @@ const scissorClick = () => {
     document.getElementById ("scissorButton")
         .style.display = "none"
 
-    setTimeout(timeOutReset, 6000)
-
+    signPlayer = 2
     document.getElementById ("playerSign")
-        .setAttribute("src", imagesPlayer[2])
+        .setAttribute("src", imagesPlayer[signPlayer])
     document.getElementById ("playerSign")
         .style.display = "block"
+
+    setTimeout(endOfRound, 4000)
+    setTimeout(score, 5000)
+
+    setTimeout(timeOutReset, 6000)
+    
     }
 
 
         // ----------------------------------- SCORE SCORE SCORE ---------------------------------------------
 
-    const indexPlayer = () => {
-        
+    const endOfRound = () => {
+        if (signPlayer === signIA) {
+            document.getElementById("sentence")
+                .innerHTML = "TIE !"
+        }
+        else if (signPlayer === 0 && signIA === 1 || signPlayer === 1 && signIA === 2 || signPlayer === 2 && signIA === 0) {
+            document.getElementById("sentence")
+                .innerHTML = "PLAYER WIN !"
+                roundWinSound.play ()
+                scorePlayer ++
+        }
+        else {
+            document.getElementById("sentence")
+                .innerHTML = "MASTER HAND WIN !"
+                roundLostSound.play ()
+                scoreIA ++
+        }
+
+        finalScore =  document.getElementById("score")
+            .innerHTML = `${scorePlayer} - ${scoreIA}`
     }
-// const rock = ""
-// const score = () => {
-    
-// }
+
+    const score = () => {
+        if (scorePlayer >= 3 && scorePlayer - scoreIA >= 2 || scorePlayer === 5) {
+            document.getElementById("sentence")
+                .innerHTML = "PLAYER WIN THE GAME !"
+            gameWinSound.play()
+            setTimeout (scoreReset, 1000)
+        }
+        else if (scoreIA >= 3 && scoreIA - scorePlayer >= 2 || scoreIA === 5) {
+            document.getElementById("sentence")
+                .innerHTML = "GAME OVER !"
+            gameLostSound.play()
+            setTimeout (scoreReset, 1000)
+
+        }
+    }
+
+    const scoreReset = () => {
+        scoreIA = 0
+        scorePlayer = 0
+    }

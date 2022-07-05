@@ -11,7 +11,7 @@
 
 <body>
     <section>
-        <audio src="" id="audio" autoplay></audio>
+        <!-- <audio src="s" id="audio" autoplay></audio> -->
     </section>
     <section class="upperPart">
         <h2>Welcome to the <h1>SHIFUMI</h1> tournament !!</h2>
@@ -24,33 +24,29 @@
             <button type="button" id="rockButton" onclick="rockClick()">
                 <img src="./img/rock_icon.png" alt="Rock !">
             </button>
-            <!-- <img src="./img/rock.png" alt="Rock !" id="rock"> -->
             
             <button type="button" id="paperButton" onclick="paperClick()">
                 <img src="./img/paper_icon.png" alt="Paper !">
             </button>
-            <!-- <img src="./img/paper.png" alt="Paper !" id="paper"> -->
             
             <button type="button" id="scissorButton" onclick="scissorClick()">
                 <img src="./img/scissor_icon.png" alt="Scissor !">
             </button>
-            <!-- <img src="./img/scissor.png" alt="Scissor !" id="scissor">  -->
               
             <img src="" alt="Player Sign" id="playerSign">
         </article>
 
         <article id="iaSide">
             <img src="./img/master-hand.gif" alt="Waiting ..." id="signIA">
-            <!-- <img src="./img/paper_ai.png" alt="Paper !" id="paperIA" class="resultIA">
-            <img src="./img/rock_ai.png" alt="Rock !" id="rockIA" class="resultIA">
-            <img src="./img/scissor_ai.png" alt="Scissor !" id="scissorIA" class="resultIA"> -->
         </article>
 
     </section>
 
-    <section>
-        <p id="score"></p>
-    </section>
+    <footer>
+    <p id="sentence"></p>
+    <p id="score"></p>    
+    </footer>
+    
     <script src="./index.js"></script>
 </body>
 </html>

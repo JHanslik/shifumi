@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.upperPart {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: white;
+background-color: black;
+height: 20vh;
+font-size: 30px;
+}
+
+
 #countdown {
     position: fixed;
     height: 100vh;
@@ -16,29 +35,66 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding-top: 20px;
+    height: 60vh;
+    background-color: black;
 }
-.gameField #playerSide img {
+.gameField #playerSign {
     display: none;
-    width: 50%;
+    width: 60%;
     text-align: center;
+    margin: 20px 0;
 }
 .gameField #playerSide button{
-    margin: 10px auto;
+    margin: 10px 20px;
+    background-color: black;
+    width: 20%;
+    
+}
+.gameField #playerSide button:hover {
+    cursor: pointer;
 }
 .gameField #playerSide button img{
-    width: 100px;
-    display: block;
-    text-align: center;
+    width: 100%;
+    /* display: block; */
+    /* text-align: center; */
 }
-.gameField #iaSide img{
+
+.gameField #iaSide {
+    height: 60vh;
+    background-color: black;
     display: flex;
     justify-content: center;
-    width: 50%;
+    align-items: center;
 }
-/* .gameField #iaSide .resultIA {
-    display: none;
-    width: 50%;
-    text-align: center;
-} */
+.gameField #signIA{
+    width: 60%;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+@media (max-width: 992px) {
+    .gameField #playerSide {
+        /* flex-direction: column;     */
+    }
+    .gameField #playerSide button{
+        
+    }
+}
+
+@media (max-width: 768px) {
+    .gameField #playerSide {
+        flex-direction: column;    
+    }
+    .gameField #playerSide button{
+        width: 50%;
+    }
+}
