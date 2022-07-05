@@ -1,56 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* scrollbar Style */
-
-/* Works on Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: white black;
-  }
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: black;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 20px;
-    border: 3px solid black;
-  }
-
-  /* scrollbar Style */
-
-
 body {
     font-family: 'Press Start 2P', cursive;
-    display: flex;
-    background-color: black;
-    padding: 0 10px;
 }
-aside {
-    height: 100vh;
-    width: 20vw;
-    background-color: black;
-    color: white;
-    overflow-y: scroll;
-}
-aside p {
-    margin: 15px 0;
-    line-height: 20px;
-}
-main {
-    width: 80vw;
-    position: relative;
-}
+
 #refresh {
     background-color: black;
-    position: absolute;
-    top: 25%;
+    position: fixed;
+    top: 15%;
     left: calc(50% - 83px);
     height: auto;
     color: white;
@@ -59,7 +16,7 @@ main {
     box-shadow: 0px 0px 62px 6px rgba(255, 255, 255, 0.75);
     transition-duration: 0.5s;
 
-    display: none;
+    /* display: none; */
 }
 #refresh:hover {
     box-shadow: 0px 0px 62px 20px rgba(255, 255, 255, 0.75);
@@ -81,7 +38,7 @@ align-items: center;
 color: white;
 background-color: black;
 height: 15vh;
-font-size: 40px;
+font-size: 30px;
 }
 .upperPart h1 {
     text-shadow: 0px 0px 32px rgba(255,255,255,1);
@@ -129,15 +86,25 @@ font-size: 40px;
     width: 100%;
 }
 
-.gameField #iaSide {
+.gameField #iaLand {
+    width: 50%;
     height: 60vh;
     background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
-.gameField #signIA{
+
+.gameField #iaLand .iaSide {
+    text-align: center;
+}
+.gameField #iaLand #signIA1,
+.gameField #iaLand #signIA2,
+.gameField #iaLand #signIA3,
+.gameField #iaLand #signIA4 {
     width: 60%;
+    text-align: center;
 }
 
 footer {
@@ -166,10 +133,12 @@ footer {
     .gameField #playerSide button{
         width: 50%;
     }
+    .gameField #iaLand {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
     footer {
         font-size: 20px;
-    }
-    aside p {
-        font-size: 10px;
     }
 }
