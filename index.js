@@ -189,13 +189,13 @@ const scissorClick = () => {
     }
 
     const score = () => {
-        if (scorePlayer >= 3 && scorePlayer - scoreIA >= 2 || scorePlayer === 5) {
+        if (scorePlayer === 3) {
             document.getElementById("sentence")
                 .innerHTML = "PLAYER WIN THE GAME !"
             gameWinSound.play()
             setTimeout (scoreReset, 1000)
         }
-        else if (scoreIA >= 3 && scoreIA - scorePlayer >= 2 || scoreIA === 5) {
+        else if (scoreIA === 3) {
             document.getElementById("sentence")
                 .innerHTML = "GAME OVER !"
             gameLostSound.play()
