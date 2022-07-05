@@ -3,12 +3,12 @@ const imagesPlayer = ["./img/paper.png", "./img/rock.png", "./img/scissor.png"]
 
 let signIA1
 let signIA2
-let signIA3
-let signIA4
 let signPlayer
 
-let scoreIA = 0
-let scorePlayer = 0
+
+let lifeIA1 = 5
+let lifeIA2 = 5
+let lifePlayer = 5
 let finalScore = ``
 
 const randomIA = images[Math.floor(Math.random() * 3)]
@@ -16,16 +16,10 @@ const randomIA = images[Math.floor(Math.random() * 3)]
 const signs = () => {
     signIA1 = Math.floor(Math.random() * 3)
     signIA2 = Math.floor(Math.random() * 3)
-    signIA3 = Math.floor(Math.random() * 3)
-    signIA4 = Math.floor(Math.random() * 3)
-    document.getElementById("signIA1")
-    .setAttribute("src", images[signIA1])
-    document.getElementById("signIA2")
-    .setAttribute("src", images[signIA2])
-    document.getElementById("signIA3")
-    .setAttribute("src", images[signIA3])
-    document.getElementById("signIA4")
-    .setAttribute("src", images[signIA4])
+        document.getElementById("signIA1")
+            .setAttribute("src", images[signIA1])
+        document.getElementById("signIA2")
+            .setAttribute("src", images[signIA2])
 }
 
 const loadingSound = new Audio("./audio/Mario Kart Wii - Item Box - Sound Effect.mp3")
@@ -47,14 +41,7 @@ const timeOutReset = () => {
 
     document.getElementById("signIA1")
         .setAttribute("src", "./img/master-hand.gif")
-
     document.getElementById("signIA2")
-        .setAttribute("src", "./img/master-hand.gif")
-        
-    document.getElementById("signIA3")
-        .setAttribute("src", "./img/master-hand.gif")
-        
-    document.getElementById("signIA4")
         .setAttribute("src", "./img/master-hand.gif")
 
     document.getElementById ("playerSign")
@@ -164,56 +151,142 @@ const scissorClick = () => {
 
         // ----------------------------------- SCORE SCORE SCORE ---------------------------------------------
 
-    const endOfRound = () => {
-        
-        if (signPlayer === signIA1 === signIA2 === signIA3 === signIA4) {
-            document.getElementById("sentence")
-                .innerHTML = "TIE !"
-            setTimeout(timeOutReset, 2000)
+const endOfRound = () => {
+//     let signArray = [signPlayer, signIA1, signIA2, signIA3, signIA4]
+    
+//     if (signPlayer === signIA1 === signIA2 === signIA3 === signIA4) {
+//         document.getElementById("sentence")
+//             .innerHTML = "TIE !"
+//         setTimeout(timeOutReset, 2000)
+//     }
 
-        }
-        else if (signPlayer === 0 && signIA === 1 || signPlayer === 1 && signIA === 2 || signPlayer === 2 && signIA === 0) {
-            document.getElementById("sentence")
-                .innerHTML = "PLAYER WIN !"
-                scorePlayer ++
-                console.log (scorePlayer, scoreIA)
-                if (scorePlayer === 3) {
-                    document.getElementById("sentence")
-                    .innerHTML = "PLAYER WIN THE GAME !"
-                    gameWinSound.play()
+//     else if (signPlayer === 0 || signIA1 === 0 || signIA2 === 0 || signIA3 === 0 || signIA4 === 0) {
+//         if (signPlayer === 1 || signIA1 === 1 || signIA2 === 1 || signIA3 === 1 || signIA4 === 1) {
 
-                    document.getElementById("refresh")
-                        .style.display = "block"
-                }
-                else {
-                    roundWinSound.play ()
-                    setTimeout(timeOutReset, 2000)
-
-                }
+//         }
+//     }
+    //     console.log (signIA1)
 
 
-        }
-        else {
-            document.getElementById("sentence")
-                .innerHTML = "MASTER HAND WIN !"
-                scoreIA ++
-                console.log (scorePlayer, scoreIA) 
-                if (scoreIA === 3) {
-                    document.getElementById("sentence")
-                    .innerHTML = "GAME OVER !"
-                    gameLostSound.play()
+    //     document.getElementById("sentence")
+    //         .innerHTML = "PLAYER WIN !"
+    //         scorePlayer ++
+    //         console.log (scorePlayer, scoreIA)
+    //         if (scorePlayer === 3) {
+    //             document.getElementById("sentence")
+    //             .innerHTML = "PLAYER WIN THE GAME !"
+    //             gameWinSound.play()
 
-                    document.getElementById("refresh")
-                        .style.display = "block"
-                }
-                else {
-                    roundLostSound.play ()
-                    setTimeout(timeOutReset, 2000)
+    //             document.getElementById("refresh")
+    //                 .style.display = "block"
+    //         }
+    //         else {
+    //             roundWinSound.play ()
+    //             setTimeout(timeOutReset, 2000)
 
-                }
+    //         }
+    // }
+    // else {
+    //     document.getElementById("sentence")
+    //         .innerHTML = "MASTER HAND WIN !"
+    //         scoreIA ++
+    //         if (scoreIA === 3) {
+    //             document.getElementById("sentence")
+    //             .innerHTML = "GAME OVER !"
+    //             gameLostSound.play()
 
-        }
+    //             document.getElementById("refresh")
+    //                 .style.display = "block"
+    //         }
+    //         else {
+    //             roundLostSound.play ()
+    //             setTimeout(timeOutReset, 2000)
 
-        finalScore =  document.getElementById("score")
-            .innerHTML = `${scorePlayer} - ${scoreIA}`
+    //         }
+
+    // }
+
+//     finalScore =  document.getElementById("score")
+//         .innerHTML = `P:${lifePlayer} | Ai1:${lifeIA1} | Ai2:${lifeIA2} | Ai3:${lifeIA3} | Ai4:${lifeIA4}`
+    setTimeout(timeOutReset, 2000)
+    div()
+    log ()
+    updateScroll()
+}
+
+
+        // ----------------------------------- LOG LOG LOG LOG LOG ---------------------------------------------
+
+const roundnumber = () => {
+
+}
+let roundNumber = 0
+let logRound
+let logPlayer
+let logIA1
+let logIA2
+let logWinner
+let separation = "-----------------"
+
+const logRoundFunction = () => {
+    roundNumber ++
+    logRound = `ROUND : ${roundNumber}`
+}
+
+const logPlayerFunction = () => {
+    if (signPlayer === 0) {
+        logPlayer = "Player played : Paper"
     }
+    else if (signPlayer === 1) {
+        logPlayer = "Player played : Rock"
+    }
+    else if (signPlayer === 2) {
+        logPlayer = "Player played : Scissor"
+    }
+}
+
+const logIa1Function = () => {
+    if (signIA1 === 0) {
+        logIA1 = "AI1 played : Paper"
+    }
+    else if (signIA1 === 1) {
+        logIA1 = "AI1 played : Rock"
+    }
+    else if (signIA1 === 2) {
+        logIA1 = "AI1 played : Scissor"
+    }
+}
+const logIa2Function = () => {
+    if (signIA2 === 0) {
+        logIA2 = "AI2 played : Paper"
+    }
+    else if (signIA2 === 1) {
+        logIA2 = "AI2 played : Rock"
+    }
+    else if (signIA2 === 2) {
+        logIA2 = "AI2 played : Scissor"
+    }
+}
+
+
+let div = () => {
+    logRoundFunction()
+    logPlayerFunction()
+    logIa1Function()
+    logIa2Function()
+    // logWinnerFunction()
+}
+
+let log = () => {
+    document.getElementById("log")
+        .innerHTML += `<p>${logRound}</p>
+        <p>${logPlayer}</p>
+        <p>${logIA1}</p>
+        <p>${logIA2}</p>
+        <p>${separation}</p>`
+}
+
+const updateScroll = () => {
+    let element = document.getElementById("scrollbar")
+        element.scrollTop = element.scrollHeight
+}

@@ -1,13 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+/* scrollbar Style */
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: white black;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: black;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid black;
+  }
+
+  /* scrollbar Style */
+
+
 body {
     font-family: 'Press Start 2P', cursive;
+    display: flex;
+    background-color: black;
+}
+#scrollbar {
+    height: 100vh;
+    width: 20vw;
+    background-color: black;
+    color: white;
+    overflow-y: scroll;
+}
+#scrollbar p {
+    margin: 15px 0;
+    line-height: 20px;
+}
+main {
+    width: 80vw;
+    position: relative;
+}
+main nav {
+    position: absolute;
+    top: 12%;
+    left: calc(50% - 88px);
+}
+main nav a{
+    text-decoration: none;
+    color: white;
+}
+.active {
+    color: blueviolet;
+    text-shadow: 0px 0px 32px rgba(255,255,255,1);
 }
 
 #refresh {
     background-color: black;
-    position: fixed;
-    top: 15%;
+    position: absolute;
+    top: 43%;
     left: calc(50% - 83px);
     height: auto;
     color: white;
@@ -16,15 +72,12 @@ body {
     box-shadow: 0px 0px 62px 6px rgba(255, 255, 255, 0.75);
     transition-duration: 0.5s;
 
-    /* display: none; */
+    display: none;
 }
 #refresh:hover {
     box-shadow: 0px 0px 62px 20px rgba(255, 255, 255, 0.75);
     transition-duration: 0.5s;
 }
-/* #refresh a:hover {
-    font-size: 40px;
-} */
 #refresh a {
     color: white;
     text-decoration: none;
@@ -32,26 +85,19 @@ body {
 }
 
 .upperPart {
-display: flex;
-justify-content: center;
-align-items: center;
-color: white;
-background-color: black;
-height: 15vh;
-font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: black;
+    height: 15vh;
+    font-size: 40px;
 }
 .upperPart h1 {
     text-shadow: 0px 0px 32px rgba(255,255,255,1);
     font-weight: bold;
 }
 
-
-#countdown {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    display: none;
-}
 
 .gameField {
     display: flex;
@@ -77,6 +123,7 @@ font-size: 30px;
     margin: 10px 20px;
     background-color: black;
     width: 20%;
+    border: none;
     
 }
 .gameField #playerSide button:hover {
@@ -91,20 +138,16 @@ font-size: 30px;
     height: 60vh;
     background-color: black;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
-
-.gameField #iaLand .iaSide {
-    text-align: center;
-}
-.gameField #iaLand #signIA1,
-.gameField #iaLand #signIA2,
-.gameField #iaLand #signIA3,
-.gameField #iaLand #signIA4 {
+.gameField #signIA1,
+.gameField #signIA2,
+.gameField #signIA3,
+.gameField #signIA4
+{
     width: 60%;
-    text-align: center;
 }
 
 footer {
@@ -125,8 +168,39 @@ footer {
     margin-top: 20px;
 }
 
+@media (max-width: 992px) {
+    .gameField #playerSide {
+        flex-direction: column;    
+    }
+}
 
 @media (max-width: 768px) {
+
+    body {
+        flex-direction: column-reverse;
+    }
+    main nav {
+        top: 15%;
+    }
+    .upperPart {
+        width: 100vw;
+    }
+    #scrollbar {
+        width: 96vw;
+        height: 100vh;
+        padding:0 0 0 10px;
+    }
+    main {
+        width: 100vw;
+    }
+    footer {
+        height: 15vh;
+        padding: 0 10px;
+    }
+    .gameField #playerSide,
+    .gameField #iaLand{
+        height: 70vh;
+    }
     .gameField #playerSide {
         flex-direction: column;    
     }
@@ -138,7 +212,20 @@ footer {
         flex-direction: column;
         justify-content: space-evenly;
     }
+    .gameField #signIA1,
+    .gameField #signIA2,
+    .gameField #signIA3,
+    .gameField #signIA4
+    {
+        width: 100%;
+    }
     footer {
         font-size: 20px;
+    }
+    aside p {
+        font-size: 10px;
+    }
+    #score {
+        text-align: center;
     }
 }
