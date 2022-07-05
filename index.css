@@ -32,14 +32,14 @@ body {
     background-color: black;
     padding: 0 10px;
 }
-aside {
+#scrollbar {
     height: 100vh;
     width: 20vw;
     background-color: black;
     color: white;
     overflow-y: scroll;
 }
-aside p {
+#scrollbar p {
     margin: 15px 0;
     line-height: 20px;
 }
@@ -65,9 +65,6 @@ main {
     box-shadow: 0px 0px 62px 20px rgba(255, 255, 255, 0.75);
     transition-duration: 0.5s;
 }
-/* #refresh a:hover {
-    font-size: 40px;
-} */
 #refresh a {
     color: white;
     text-decoration: none;
@@ -160,6 +157,20 @@ footer {
 
 
 @media (max-width: 768px) {
+
+    body {
+        flex-direction: column-reverse;
+    }
+    #scrollbar {
+        width: 100vw;
+        height: 12.5vh;
+    }
+    main {
+        width: 100vw;
+    }
+    footer {
+        height: 12.5vh;
+    }
     .gameField #playerSide {
         flex-direction: column;    
     }

@@ -213,7 +213,7 @@ let separation = "-----------------"
 
 const logRoundFunction = () => {
     roundNumber ++
-    logRound = `Round ${roundNumber}`
+    logRound = `ROUND : ${roundNumber}`
 }
 
 const logPlayerFunction = () => {
