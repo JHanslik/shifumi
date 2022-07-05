@@ -171,14 +171,14 @@ footer {
     }
     #scrollbar {
         width: 96vw;
-        height: 22.5vh;
+        height: 20vh;
         padding:0 0 0 10px;
     }
     main {
         width: 100vw;
     }
     footer {
-        height: 12.5vh;
+        height: 15vh;
     }
     .gameField #playerSide,
     .gameField #iaSide{
