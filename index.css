@@ -30,7 +30,6 @@ body {
     font-family: 'Press Start 2P', cursive;
     display: flex;
     background-color: black;
-    padding: 0 10px;
 }
 #scrollbar {
     height: 100vh;
@@ -117,6 +116,7 @@ font-size: 40px;
     margin: 10px 20px;
     background-color: black;
     width: 20%;
+    border: none;
     
 }
 .gameField #playerSide button:hover {
@@ -155,15 +155,24 @@ footer {
     margin-top: 20px;
 }
 
+@media (max-width: 992px) {
+    .gameField #playerSide {
+        flex-direction: column;    
+    }
+}
 
 @media (max-width: 768px) {
 
     body {
         flex-direction: column-reverse;
     }
-    #scrollbar {
+    .upperPart {
         width: 100vw;
+    }
+    #scrollbar {
+        width: 97vw;
         height: 12.5vh;
+        padding:0 0 0 10px;
     }
     main {
         width: 100vw;
