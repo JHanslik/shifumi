@@ -16,14 +16,10 @@ const signs = () => {
     .setAttribute("src", images[signIA])
 }
 
-// const loadingSound = () => {
-//     document.getElementById("loadingSound")
-//     .setAttribute("src", "./audio/Mario Kart Wii - Item Box - Sound Effect.mp3")
-// }
 const loadingSound = new Audio("./audio/Mario Kart Wii - Item Box - Sound Effect.mp3")
 const roundLostSound = new Audio("./audio/Mario 64 Oof Sound Effect.mp3")
 const roundWinSound = new Audio("./audio/Lets Go (Mario Voice).mp3")
-const gameLostSound = new Audio("./audio/Super Mario Sunshine Music - Too Bad!.mp3")
+const gameLostSound = new Audio("./audio/super-mario-sunshine-soundtrack-game-over.mp3")
 const gameWinSound = new Audio("./audio/Stage Win (Super Mario) - Sound Effect HD.mp3")
 
 let interval
@@ -79,17 +75,7 @@ const rockClick = () => {
         document.getElementById ("playerSign")
         .style.display = "block"
         
-        setTimeout (() => {
-            console.log(signIA)
-        }, 3300)
-        setTimeout (() => {
-            console.log(signPlayer)
-        }, 3300)
-
         setTimeout(endOfRound, 4000)
-        setTimeout(score, 5000)
-
-        setTimeout(timeOutReset, 6000)
     }
 
 
@@ -99,7 +85,6 @@ const rockClick = () => {
 const paperClick = () => {
 
     interval = setInterval (signs, 50)
-    console.log (signs)
     setTimeout (() => {
         clearInterval (interval)
     }, 3200)
@@ -122,9 +107,6 @@ const paperClick = () => {
         .style.display = "block"
 
     setTimeout(endOfRound, 4000)
-    setTimeout(score, 5000)
-
-    setTimeout(timeOutReset, 6000)
     }
 
 
@@ -134,7 +116,6 @@ const paperClick = () => {
 const scissorClick = () => {
 
     interval = setInterval (signs, 50)
-    console.log (signs)
     setTimeout (() => {
         clearInterval (interval)
     }, 3200)
@@ -157,54 +138,61 @@ const scissorClick = () => {
         .style.display = "block"
 
     setTimeout(endOfRound, 4000)
-    setTimeout(score, 5000)
-
-    setTimeout(timeOutReset, 6000)
-    
     }
 
 
         // ----------------------------------- SCORE SCORE SCORE ---------------------------------------------
 
     const endOfRound = () => {
+        
         if (signPlayer === signIA) {
             document.getElementById("sentence")
                 .innerHTML = "TIE !"
+            setTimeout(timeOutReset, 2000)
+
         }
         else if (signPlayer === 0 && signIA === 1 || signPlayer === 1 && signIA === 2 || signPlayer === 2 && signIA === 0) {
             document.getElementById("sentence")
                 .innerHTML = "PLAYER WIN !"
-                roundWinSound.play ()
                 scorePlayer ++
+                console.log (scorePlayer, scoreIA)
+                if (scorePlayer === 3) {
+                    document.getElementById("sentence")
+                    .innerHTML = "PLAYER WIN THE GAME !"
+                    gameWinSound.play()
+
+                    document.getElementById("refresh")
+                        .style.display = "block"
+                }
+                else {
+                    roundWinSound.play ()
+                    setTimeout(timeOutReset, 2000)
+
+                }
+
+
         }
         else {
             document.getElementById("sentence")
                 .innerHTML = "MASTER HAND WIN !"
-                roundLostSound.play ()
                 scoreIA ++
+                console.log (scorePlayer, scoreIA) 
+                if (scoreIA === 3) {
+                    document.getElementById("sentence")
+                    .innerHTML = "GAME OVER !"
+                    gameLostSound.play()
+
+                    document.getElementById("refresh")
+                        .style.display = "block"
+                }
+                else {
+                    roundLostSound.play ()
+                    setTimeout(timeOutReset, 2000)
+
+                }
+
         }
 
         finalScore =  document.getElementById("score")
             .innerHTML = `${scorePlayer} - ${scoreIA}`
-    }
-
-    const score = () => {
-        if (scorePlayer === 3) {
-            document.getElementById("sentence")
-                .innerHTML = "PLAYER WIN THE GAME !"
-            gameWinSound.play()
-            setTimeout (scoreReset, 1000)
-        }
-        else if (scoreIA === 3) {
-            document.getElementById("sentence")
-                .innerHTML = "GAME OVER !"
-            gameLostSound.play()
-            setTimeout (scoreReset, 1000)
-
-        }
-    }
-
-    const scoreReset = () => {
-        scoreIA = 0
-        scorePlayer = 0
     }
