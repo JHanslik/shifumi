@@ -32,12 +32,13 @@
     display: block;
     text-align: center;
 }
-.gameField #iaSide {
+.gameField #iaSide img{
     display: flex;
     justify-content: center;
+    width: 50%;
 }
-.gameField #iaSide .resultIA {
+/* .gameField #iaSide .resultIA {
     display: none;
     width: 50%;
     text-align: center;
-}
+} */
